@@ -21,12 +21,12 @@ function App() {
         let todosArray = [];
         const q = query(collection(db, "todos"))
         onSnapshot(q, (querySnapshot) => {
-            querySnapshot.docs.map(doc => {
+            querySnapshot.docs.forEach(doc => {
                 todosArray.push({id: doc.id, ...doc.data()});
             })
             dispatch(getAllTodos(todosArray));
         });
-    }, []);
+    });
 
 
     const handleEdit = (id, title) => {
